@@ -15,11 +15,15 @@ class CSRF {
 
         // Generate random token
         $token  = bin2hex(random_bytes(32));
-        $expiry = time() + CSRF_EXPIRY;
+
+        //rotation
+        // $expiry = time() + CSRF_EXPIRY;
 
         // Store in session
         $_SESSION['csrf_token']        = $token;
-        $_SESSION['csrf_token_expiry'] = $expiry;
+
+        //rotation
+        // $_SESSION['csrf_token_expiry'] = $expiry;
 
         return $token;
     }
@@ -44,7 +48,7 @@ class CSRF {
         }
 
         // Rotate token after every successful validation
-        self::generate();
+        // self::generate();
 
         return true;
     }
