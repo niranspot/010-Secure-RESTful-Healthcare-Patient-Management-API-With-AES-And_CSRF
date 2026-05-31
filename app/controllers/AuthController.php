@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\User;
 use App\Helpers\JWT;
 use App\Helpers\Response;
+use App\Helpers\CSRF;
 
 class AuthController {
     private $userModel;
@@ -69,11 +70,13 @@ class AuthController {
                 'samesite' => 'Strict'
             ]
         );
+        $csrfToken = CSRF::generate();
 
         Response::json(200, true, "Authentication successful. Access granted.", [
             "access_token" => $accessToken,
             "token_type"   => "Bearer",
-            "expires_in"   => JWT_EXPIRY
+            "expires_in"   => JWT_EXPIRY,
+            "csrf_token"   => $csrfToken
         ]);
     }
 
@@ -90,6 +93,7 @@ class AuthController {
         'httponly' => true,
         'samesite' => 'Strict'
     ]);
+    CSRF::clear();
 
     Response::json(200, true, "Logged out successfully.");
 }

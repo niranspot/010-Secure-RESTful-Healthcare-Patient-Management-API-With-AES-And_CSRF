@@ -11,7 +11,7 @@ class CsrfController {
 
         Response::json(200, true, "CSRF token generated.", [
             "csrf_token" => $token,
-            "expires_in" => CSRF_EXPIRY
+            // "expires_in" => CSRF_EXPIRY
         ]);
     }
 }

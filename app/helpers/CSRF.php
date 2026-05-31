@@ -37,10 +37,10 @@ class CSRF {
         }
 
         // Check expiry
-        if (time() > $_SESSION['csrf_token_expiry']) {
-            self::clear();
-            return false;
-        }
+        // if (time() > $_SESSION['csrf_token_expiry']) {
+        //     self::clear();
+        //     return false;
+        // }
 
         // Compare tokens safely
         if (!hash_equals($_SESSION['csrf_token'], $token)) {
@@ -56,6 +56,6 @@ class CSRF {
     public static function clear() {
         self::startSession();
         unset($_SESSION['csrf_token']);
-        unset($_SESSION['csrf_token_expiry']);
+        // unset($_SESSION['csrf_token_expiry']);
     }
 }

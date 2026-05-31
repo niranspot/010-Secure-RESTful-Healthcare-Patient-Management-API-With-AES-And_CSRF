@@ -28,7 +28,7 @@ use App\Middleware\CsrfMiddleware;
 $router = new Router();
 
 // Globally Applicable Global Arrays
-$globalMiddlewares    = [JsonMiddleware::class, CsrfMiddleware::class];
+$globalMiddlewares    = [JsonMiddleware::class];
 $protectedMiddlewares = [JsonMiddleware::class, CsrfMiddleware::class, AuthMiddleware::class];
 
 // Public Open Security Endpoints
